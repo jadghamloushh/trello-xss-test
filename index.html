@@ -13,7 +13,7 @@
                 text: 'XSS Test',
                 callback: function(t) {
                     return t.modal({
-                        url: 'javascript:alert(document.domain)',
+                        url: 'data:text/html,<script>alert(document.domain)</script>',
                         title: 'Test Modal'
                     });
                 }
