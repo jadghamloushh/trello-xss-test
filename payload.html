@@ -1,1 +1,31 @@
-<script>alert(document.domain)</script>
+<html>
+<body>
+<script>
+// Check what domain we're running in
+console.log("Modal domain:", document.domain);
+console.log("Modal origin:", window.origin);
+
+// Try to access parent
+try {
+    console.log("Parent location:", window.parent.location.href);
+} catch(e) {
+    console.log("Cannot access parent:", e.message);
+}
+
+// Try top
+try {
+    console.log("Top location:", top.location.href);
+} catch(e) {
+    console.log("Cannot access top:", e.message);
+}
+
+// Check if we can postMessage to parent
+window.parent.postMessage({test: 'xss'}, '*');
+
+// Display results visually
+document.body.innerHTML = '<h2>Modal loaded at: ' + document.domain + '</h2>' +
+    '<p>Origin: ' + window.origin + '</p>' +
+    '<p>Check console for access test results</p>';
+</script>
+</body>
+</html>
